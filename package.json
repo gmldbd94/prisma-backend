@@ -4,6 +4,9 @@
   "description": "instargram with prisma",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "12.13.0"
+  },
   "dependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.6.4",
@@ -11,6 +14,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/runtime": "^7.7.6",
     "aws-sdk": "^2.585.0",
+    "copy": "^0.3.2",
     "dotenv": "^8.2.0",
     "graphql-tools": "^4.0.5",
     "graphql-yoga": "^1.18.3",
@@ -34,6 +38,8 @@
     "deploy": "prisma deploy",
     "generate": "prisma generate",
     "prisma": "yarn run deploy && yarn run generate",
-    "build": "babel src -d build"
+    "build": "babel src -d build",
+    "postbuild": "cd src && copy ./api/**/*.graphql ../build/api/",
+    "start": "node build/server.js"
   }
 }
